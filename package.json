@@ -3,7 +3,14 @@
   "version": "0.1.0",
   "description": "Elicitation MCP server",
   "license": "MIT",
-  "author": "Maik Schreiber",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/blizzy78/mcp-elicit"
+  },
+  "author": {
+    "name": "Maik Schreiber",
+    "email": "blizzy@blizzy.de"
+  },
   "homepage": "https://github.com/blizzy78/mcp-elicit",
   "bugs": "https://github.com/blizzy78/mcp-elicit/issues",
   "type": "module",
