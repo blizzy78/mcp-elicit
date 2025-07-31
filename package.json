@@ -5,7 +5,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/blizzy78/mcp-elicit"
+    "url": "git+https://github.com/blizzy78/mcp-elicit.git"
   },
   "author": {
     "name": "Maik Schreiber",
