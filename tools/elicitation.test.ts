@@ -67,9 +67,18 @@ describe('elicitation tests', () => {
           content: [
             {
               type: 'text',
+              audience: ['assistant'],
+              text: '{"answer":"test response"}',
+            },
+            {
+              type: 'text',
+              audience: ['assistant'],
               text: 'User answered with: test response',
             },
           ],
+          structuredContent: {
+            answer: 'test response',
+          },
         })
       })
 
@@ -93,9 +102,18 @@ describe('elicitation tests', () => {
           content: [
             {
               type: 'text',
+              audience: ['assistant'],
+              text: '{"answer":null}',
+            },
+            {
+              type: 'text',
+              audience: ['assistant'],
               text: "User didn't provide an answer.",
             },
           ],
+          structuredContent: {
+            answer: null,
+          },
         })
       })
 
@@ -112,9 +130,18 @@ describe('elicitation tests', () => {
           content: [
             {
               type: 'text',
+              audience: ['assistant'],
+              text: '{"answer":null}',
+            },
+            {
+              type: 'text',
+              audience: ['assistant'],
               text: "User didn't provide an answer.",
             },
           ],
+          structuredContent: {
+            answer: null,
+          },
         })
       })
 
@@ -131,9 +158,18 @@ describe('elicitation tests', () => {
           content: [
             {
               type: 'text',
+              audience: ['assistant'],
+              text: '{"answer":null}',
+            },
+            {
+              type: 'text',
+              audience: ['assistant'],
               text: "User didn't provide an answer.",
             },
           ],
+          structuredContent: {
+            answer: null,
+          },
         })
       })
     })
@@ -152,9 +188,11 @@ describe('elicitation tests', () => {
           content: [
             {
               type: 'text',
+              audience: ['assistant'],
               text: 'User declined to answer.',
             },
           ],
+          structuredContent: null,
         })
       })
 
@@ -171,9 +209,11 @@ describe('elicitation tests', () => {
           content: [
             {
               type: 'text',
+              audience: ['assistant'],
               text: 'User declined to answer.',
             },
           ],
+          structuredContent: null,
         })
       })
     })
@@ -192,9 +232,11 @@ describe('elicitation tests', () => {
           content: [
             {
               type: 'text',
+              audience: ['assistant'],
               text: 'User canceled the dialog.',
             },
           ],
+          structuredContent: null,
         })
       })
 
@@ -211,9 +253,11 @@ describe('elicitation tests', () => {
           content: [
             {
               type: 'text',
+              audience: ['assistant'],
               text: 'User canceled the dialog.',
             },
           ],
+          structuredContent: null,
         })
       })
     })
@@ -335,9 +379,18 @@ describe('elicitation tests', () => {
           content: [
             {
               type: 'text',
+              audience: ['assistant'],
+              text: '{"answer":"John Doe, 30, john@example.com, option1"}',
+            },
+            {
+              type: 'text',
+              audience: ['assistant'],
               text: 'User answered with: John Doe, 30, john@example.com, option1',
             },
           ],
+          structuredContent: {
+            answer: 'John Doe, 30, john@example.com, option1',
+          },
         })
       })
 
@@ -376,9 +429,18 @@ describe('elicitation tests', () => {
           content: [
             {
               type: 'text',
+              audience: ['assistant'],
+              text: '{"answer":"Yes"}',
+            },
+            {
+              type: 'text',
+              audience: ['assistant'],
               text: 'User answered with: Yes',
             },
           ],
+          structuredContent: {
+            answer: 'Yes',
+          },
         })
       })
 
@@ -418,9 +480,18 @@ describe('elicitation tests', () => {
           content: [
             {
               type: 'text',
+              audience: ['assistant'],
+              text: '{"answer":"2024-01-15T10:30:00Z"}',
+            },
+            {
+              type: 'text',
+              audience: ['assistant'],
               text: 'User answered with: 2024-01-15T10:30:00Z',
             },
           ],
+          structuredContent: {
+            answer: '2024-01-15T10:30:00Z',
+          },
         })
       })
     })
@@ -447,9 +518,18 @@ describe('elicitation tests', () => {
           content: [
             {
               type: 'text',
+              audience: ['assistant'],
+              text: '{"answer":"response"}',
+            },
+            {
+              type: 'text',
+              audience: ['assistant'],
               text: 'User answered with: response',
             },
           ],
+          structuredContent: {
+            answer: 'response',
+          },
         })
       })
 
@@ -468,9 +548,18 @@ describe('elicitation tests', () => {
           content: [
             {
               type: 'text',
+              audience: ['assistant'],
+              text: '{"answer":null}',
+            },
+            {
+              type: 'text',
+              audience: ['assistant'],
               text: "User didn't provide an answer.",
             },
           ],
+          structuredContent: {
+            answer: null,
+          },
         })
       })
 
@@ -489,9 +578,18 @@ describe('elicitation tests', () => {
           content: [
             {
               type: 'text',
+              audience: ['assistant'],
+              text: '{"answer":"   "}',
+            },
+            {
+              type: 'text',
+              audience: ['assistant'],
               text: 'User answered with:    ',
             },
           ],
+          structuredContent: {
+            answer: '   ',
+          },
         })
       })
     })
@@ -526,11 +624,18 @@ describe('elicitation tests', () => {
 
       expect(result).toHaveProperty('content')
       expect(Array.isArray(result.content)).toBe(true)
-      expect(result.content).toHaveLength(1)
+      expect(result.content).toHaveLength(2)
       expect(result.content[0]).toHaveProperty('type')
       expect(result.content[0]).toHaveProperty('text')
+      expect(result.content[0]).toHaveProperty('audience')
       expect(result.content[0].type).toBe('text')
       expect(typeof result.content[0].text).toBe('string')
+      expect(result.content[1]).toHaveProperty('type')
+      expect(result.content[1]).toHaveProperty('text')
+      expect(result.content[1]).toHaveProperty('audience')
+      expect(result.content[1].type).toBe('text')
+      expect(typeof result.content[1].text).toBe('string')
+      expect(result).toHaveProperty('structuredContent')
     })
 
     it('should make proper elicitation/create request', async () => {

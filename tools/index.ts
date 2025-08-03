@@ -16,7 +16,7 @@ import {
 import { ELICIT_NUMBER, ElicitNumberArgsSchema, elicitNumberTool, handleElicitNumber } from './elicit_number.js'
 import { ELICIT_OPTIONS, ElicitOptionsArgsSchema, elicitOptionsTool, handleElicitOptions } from './elicit_options.js'
 import { ELICIT_URI, ElicitUriArgsSchema, elicitUriTool, handleElicitUri } from './elicit_uri.js'
-import type { ElicitSingleTextResponse, RequestElicitationFunction } from './elicitation.js'
+import type { ElicitationResult, RequestElicitationFunction } from './elicitation.js'
 
 export const tools = [
   elicitInformationTool,
@@ -28,10 +28,7 @@ export const tools = [
   elicitUriTool,
 ] as const
 
-export type ToolHandler = (
-  args: any,
-  requestElicitation: RequestElicitationFunction
-) => Promise<{ content: [ElicitSingleTextResponse] }>
+export type ToolHandler = (args: any, requestElicitation: RequestElicitationFunction) => Promise<ElicitationResult>
 
 export const toolHandlers: Record<string, { handler: ToolHandler; schema: z.ZodTypeAny }> = {
   [ELICIT_INFORMATION]: {

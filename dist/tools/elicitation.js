@@ -5,11 +5,10 @@ const ElicitationResponseSchema = z.object({
 });
 export function requestElicitation(server) {
     return async function (message, requestedSchema, responseContentSchema, answerExtractor) {
-        const req = {
+        const res = await server.request({
             method: 'elicitation/create',
             params: { message, requestedSchema },
-        };
-        const res = await server.request(req, ElicitationResponseSchema);
+        }, ElicitationResponseSchema);
         const action = res.action;
         const answer = res.content ? answerExtractor(responseContentSchema.parse(res.content)) : undefined;
         switch (action) {
@@ -19,36 +18,54 @@ export function requestElicitation(server) {
                         content: [
                             {
                                 type: 'text',
+                                audience: ['assistant'],
+                                text: JSON.stringify({ answer: null }),
+                            },
+                            {
+                                type: 'text',
+                                audience: ['assistant'],
                                 text: "User didn't provide an answer.",
                             },
                         ],
+                        structuredContent: { answer: null },
                     };
                 }
                 return {
                     content: [
                         {
                             type: 'text',
+                            audience: ['assistant'],
+                            text: JSON.stringify({ answer }),
+                        },
+                        {
+                            type: 'text',
+                            audience: ['assistant'],
                             text: `User answered with: ${answer}`,
                         },
                     ],
+                    structuredContent: { answer },
                 };
             case 'decline':
                 return {
                     content: [
                         {
                             type: 'text',
+                            audience: ['assistant'],
                             text: 'User declined to answer.',
                         },
                     ],
+                    structuredContent: null,
                 };
             case 'cancel':
                 return {
                     content: [
                         {
                             type: 'text',
+                            audience: ['assistant'],
                             text: 'User canceled the dialog.',
                         },
                     ],
+                    structuredContent: null,
                 };
             default:
                 throw new Error(`Unknown elicitation action: ${action}`);
