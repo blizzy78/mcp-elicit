@@ -17,6 +17,7 @@ export const ELICIT_EMAIL = 'elicit_email'
 
 export const elicitEmailTool = {
   name: ELICIT_EMAIL,
+  title: 'Request email from user',
   description: `A tool to prompt the user for an email address input.
 Only provide a brief title for the information being requested.
 Avoid using lengthy phrases like 'Please provide ...' etc.`,

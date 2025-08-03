@@ -17,6 +17,7 @@ export const ELICIT_INFORMATION = 'elicit_information'
 
 export const elicitInformationTool = {
   name: ELICIT_INFORMATION,
+  title: 'Request information from user',
   description: `A tool to request information directly from the user, as a free-form text input.
 Only provide a brief title for the information being requested.
 Avoid using lengthy phrases like 'Please provide ...' etc.`,

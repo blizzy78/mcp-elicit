@@ -11,6 +11,7 @@ export const ElicitUriArgsSchema = z.object({
 export const ELICIT_URI = 'elicit_uri';
 export const elicitUriTool = {
     name: ELICIT_URI,
+    title: 'Request URI from user',
     description: `A tool to prompt the user for a URI input.
 Only provide a brief title for the information being requested.
 Avoid using lengthy phrases like 'Please provide ...' etc.`,

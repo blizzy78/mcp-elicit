@@ -27,6 +27,7 @@ export const ELICIT_OPTIONS = 'elicit_options'
 
 export const elicitOptionsTool = {
   name: ELICIT_OPTIONS,
+  title: 'Request information from user',
   description: `A tool to prompt the user to select from a list of options.
 Only provide a brief title for the information being requested.
 Avoid using lengthy phrases like 'Please select ...' etc.`,

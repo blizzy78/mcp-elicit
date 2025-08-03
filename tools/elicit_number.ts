@@ -19,6 +19,7 @@ export const ELICIT_NUMBER = 'elicit_number'
 
 export const elicitNumberTool = {
   name: ELICIT_NUMBER,
+  title: 'Request number from user',
   description: `A tool to prompt the user for a number input.
 Only provide a brief title for the information being requested.
 Avoid using lengthy phrases like 'Please provide ...' etc.

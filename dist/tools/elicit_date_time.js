@@ -15,6 +15,7 @@ export const ElicitDateTimeArgsSchema = z.object({
 export const ELICIT_DATE_TIME = 'elicit_date_time';
 export const elicitDateTimeTool = {
     name: ELICIT_DATE_TIME,
+    title: 'Request date/time from user',
     description: `A tool to prompt the user for a date or date-time input.
 Only provide a brief title for the information being requested.
 Avoid using lengthy phrases like 'Please provide ...' etc.
