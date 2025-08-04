@@ -1,7 +1,7 @@
 {
   "name": "@blizzy/mcp-elicit",
   "version": "0.2.0",
-  "description": "Elicitation MCP server",
+  "description": "Elicitation MCP Server",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -20,14 +20,14 @@
   "files": [
     "dist"
   ],
+  "packageManager": "pnpm@10.13.1",
   "scripts": {
     "build": "tsc && shx chmod +x dist/index.js",
     "watch": "tsc --watch",
     "start": "node dist/index.js",
     "start:sse": "node dist/sse.js",
     "start:streamableHttp": "node dist/streamableHttp.js",
-    "test": "vitest",
-    "test:run": "vitest run",
+    "test": "vitest run",
     "test:coverage": "vitest run --coverage"
   },
   "dependencies": {

@@ -4,8 +4,8 @@ import { requestElicitation } from './tools/elicitation.js';
 import { toolHandlers, tools } from './tools/index.js';
 export function createServer() {
     const server = new Server({
-        name: 'mcp-elicit',
-        title: 'MCP Elicitation Server',
+        name: 'elicit',
+        title: 'Elicitation',
         version: '0.2.0',
     }, {
         capabilities: {

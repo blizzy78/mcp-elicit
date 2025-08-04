@@ -1,5 +1,6 @@
 import { Server } from '@modelcontextprotocol/sdk/server/index.js'
 import { z } from 'zod'
+import type { TextContent, ToolResult } from './tools.js'
 
 type ElicitationRequestPropertySchemaBase = {
   title: string
@@ -32,23 +33,12 @@ const ElicitationResponseSchema = z.object({
   content: z.any().optional(),
 })
 
-export type TextContent = {
-  type: 'text'
-  audience: Array<'user' | 'assistant'>
-  text: string
-}
-
-export type ElicitationResult = {
-  content: Array<TextContent>
-  structuredContent: any
-}
-
 export type RequestElicitationFunction = <T extends object>(
   message: string,
   requestedSchema: ElicitationRequestObjectSchema,
   responseContentSchema: z.ZodType<T>,
   answerExtractor: (content: T) => string | undefined
-) => Promise<ElicitationResult>
+) => Promise<ToolResult>
 
 export function requestElicitation(server: Server) {
   return async function <T extends object>(
@@ -88,7 +78,7 @@ export function requestElicitation(server: Server) {
             ],
 
             structuredContent: { answer: null },
-          } satisfies ElicitationResult
+          } satisfies ToolResult
         }
 
         return {
@@ -107,7 +97,7 @@ export function requestElicitation(server: Server) {
           ],
 
           structuredContent: { answer },
-        } satisfies ElicitationResult
+        } satisfies ToolResult
 
       case 'decline':
         return {
@@ -120,7 +110,7 @@ export function requestElicitation(server: Server) {
           ],
 
           structuredContent: null,
-        } satisfies ElicitationResult
+        } satisfies ToolResult
 
       case 'cancel':
         return {
@@ -133,7 +123,7 @@ export function requestElicitation(server: Server) {
           ],
 
           structuredContent: null,
-        } satisfies ElicitationResult
+        } satisfies ToolResult
 
       default:
         throw new Error(`Unknown elicitation action: ${action}`)
